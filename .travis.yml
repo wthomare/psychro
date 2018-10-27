@@ -1,0 +1,20 @@
+os: linux
+sudo: false
+language: python
+python:
+  - "3.5"
+  - "3.6"
+
+install:
+#  - pip install psychrochart
+  - pip install .
+  - pip install coverage
+  - pip install pytest pytest-cov
+  - pip install coveralls
+
+script:
+  - py.test -v --cov psychrochart --cov-report term-missing
+  - pip install scipy
+  - py.test -v --cov psychrochart --cov-report term-missing
+after_sucess:
+  - coveralls
